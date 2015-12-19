@@ -1,3 +1,5 @@
+module.exports = pigLatinTranslator;
+
 var pigLatinTranslator = (function() {
   var module = {};
   var vowels = ["A","a","E", "e","I", "i", "O", "o", "U","u"];
@@ -36,10 +38,12 @@ var pigLatinTranslator = (function() {
     for (var i=0; i < array.length; i++) {
       var letters = array[i].split("");
       for (var k = 0; k < letters.length; k++){
-        if (k === "-") {
+        if (letters[k] === "-") {
           var back = letters.splice(k, letters.length);
-          back.shift().pop().pop();
-          letters.unshift(back);
+          back.shift();
+          back.pop();
+          back.pop();
+          letters = back.concat(letters);
           array.splice(i, 1, letters.join(""));
           break;
         }
